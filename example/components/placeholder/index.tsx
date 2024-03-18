@@ -5,7 +5,7 @@ const Placeholder = ({ children }) => {
     return (
         <div className="placeholder">
             <span className="iconfont icon-loading" />
-            <span>音频解码中...{children}</span>
+            <span>Loading... {children}</span>
         </div>
     );
 };

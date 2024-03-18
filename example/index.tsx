@@ -18,7 +18,7 @@ import audioSrc from "./qifengle.mp3";
 import "./index.scss";
 import "./iconfont/iconfont.scss";
 
-const waveHeight = 60;
+const waveHeight = 50;
 const colors = {
     waveColor: "#d8d8d8",
     progressColor: "#8E128E",
@@ -57,7 +57,7 @@ const AudioPlayer = () => {
     }, []);
 
     const timeFormat = useCallback((seconds: number) => {
-        return timeFormatFunc(seconds, "hh:mm:ss.u");
+        return timeFormatFunc(seconds, "hh:mm:ss");
     }, []);
 
     const changePlaybackRate = (rate) => {
@@ -80,29 +80,18 @@ const AudioPlayer = () => {
                 <div className="audio-controls">
                     <span
                         onClick={playPause}
-                        className={classNames("iconfont", "icon-switch-paly", {
+                        className={classNames("iconfont", "icon-switch-play", {
                             "icon-pause": !paused,
                             "icon-play": paused,
                         })}
                     />
                     <TimeDuration ref={timeDurationRef} className="audio-time" duration={durationRef.current} />
+                    {/*
                     <span
                         className={classNames("iconfont icon-circledownload", "icon-download")}
                         onClick={downloadAudio}
-                    />
-                    <select
-                        value={playbackRate}
-                        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-                            changePlaybackRate(event.target.value);
-                        }}
-                        className="audio-rate"
-                    >
-                        <option value="0.5">playbackRate 0.5</option>
-                        <option value="1.0">playbackRate 1.0</option>
-                        <option value="1.5">playbackRate 1.5</option>
-                        <option value="2.0">playbackRate 2.0</option>
-                    </select>
-                    <VolumeSlider onChangeVolume={onChangeVolume} className="volume-slider" />
+                    />*/}
+
                 </div>
             ) : null}
             <ReactAudioWave
@@ -118,6 +107,28 @@ const AudioPlayer = () => {
                 timeFormat={timeFormat}
                 placeholder={Placeholder}
             />
+            {loadState === LoadStateEnum.SUCCESS ? (
+                <div className="audio-controls">
+                    {/*
+                    <span
+                        className={classNames("iconfont icon-circledownload", "icon-download")}
+                        onClick={downloadAudio}
+                    />*/}
+                    <select
+                        value={playbackRate}
+                        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                            changePlaybackRate(event.target.value);
+                        }}
+                        className="audio-rate"
+                    >
+                        <option value="0.5">Speed 0.5</option>
+                        <option value="1.0">Speed 1.0</option>
+                        <option value="1.5">Speed 1.5</option>
+                        <option value="2.0">Speed 2.0</option>
+                    </select>
+                    <VolumeSlider onChangeVolume={onChangeVolume} className="volume-slider" />
+                </div>
+            ) : null}
         </div>
     );
 };
