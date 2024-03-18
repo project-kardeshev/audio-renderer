@@ -12,6 +12,7 @@ import TimeDuration from "./components/time-duration";
 import Placeholder from "./components/placeholder";
 import VolumeSlider from "./components/volume-slider";
 import { timeFormat as timeFormatFunc } from "./utils";
+import AudioMeta from "./components/audio-metadata";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import audioSrc from "./qifengle.mp3";
@@ -85,7 +86,10 @@ const AudioPlayer = () => {
                             "icon-play": paused,
                         })}
                     />
-                    <TimeDuration ref={timeDurationRef} className="audio-time" duration={durationRef.current} />
+                    <div className="audio-meta">
+                        <AudioMeta />
+
+                    </div>
                     {/*
                     <span
                         className={classNames("iconfont icon-circledownload", "icon-download")}
@@ -126,6 +130,8 @@ const AudioPlayer = () => {
                         <option value="1.5">1.5</option>
                         <option value="2.0">2.0</option>
                     </select>
+
+                    <TimeDuration ref={timeDurationRef} className="audio-time" duration={durationRef.current} />
                     <VolumeSlider onChangeVolume={onChangeVolume} className="volume-slider" />
                 </div>
             ) : null}

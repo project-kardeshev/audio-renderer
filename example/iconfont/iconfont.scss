@@ -25,6 +25,8 @@
 
 .icon-pause::before {
     content: "\e768";
+    top: 1.5px;
+    position: relative;
 }
 
 .icon-circledownload::before {
