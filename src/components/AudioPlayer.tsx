@@ -5,7 +5,7 @@ import { LoadStateEnum, ReactAudioWave, LoadStateEnumType, InstanceMethodType } 
 import TimeDuration from "./time-duration";
 import Placeholder from "./placeholder";
 import VolumeSlider from "./volume-slider";
-import { timeFormat as timeFormatFunc } from "../utils";
+import { timeFormat as timeFormatFunc, validTxid } from "../utils";
 import AudioMeta from "./audio-metadata";
 import * as mm from 'music-metadata-browser'
 
@@ -40,15 +40,17 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
     });
 
     useEffect(() => {
-        parseMetadata(audioSrc).then((metadata) => {
-            console.log(metadata)
-            setMetadata({
-                author: metadata.common.artist ?? "unknown artist",
-                title: metadata.common.title ?? "unknown title",
-                year: metadata.common.year?.toString() ?? "unknown year",
-                coverUrl: URL.createObjectURL(new Blob([metadata.common.picture?.[0].data]))
+        if (validTxid(audioSrc)) {
+            parseMetadata(audioSrc).then((metadata) => {
+                console.log(metadata)
+                setMetadata({
+                    author: metadata.common.artist ?? "unknown artist",
+                    title: metadata.common.title ?? "unknown title",
+                    year: metadata.common.year?.toString() ?? "unknown year",
+                    coverUrl: URL.createObjectURL(new Blob([metadata.common.picture?.[0].data]))
+                })
             })
-        })
+        }
     }, [audioSrc])
 
 
@@ -57,25 +59,25 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
         if (state === LoadStateEnum.SUCCESS) {
             durationRef.current = duration;
         }
-    }, []);
+    }, [audioSrc]);
 
     const onPlayEnded = useCallback(() => {
         setPaused(true);
-    }, []);
+    }, [audioSrc]);
 
     const onCurrentTimeChange = useCallback((current: number) => {
         timeDurationRef.current?.changeCurrentTime(current);
-    }, []);
+    }, [audioSrc]);
 
 
     const onChangeVolume = useCallback((volume: number) => {
         if (audioWaveRef.current?.volume)
             audioWaveRef.current?.volume(volume);
-    }, []);
+    }, [audioSrc]);
 
     const timeFormat = useCallback((seconds: number) => {
         return timeFormatFunc(seconds, "hh:mm:ss");
-    }, []);
+    }, [audioSrc]);
 
     const changePlaybackRate = (rate: string) => {
         setPlaybackRate(rate);

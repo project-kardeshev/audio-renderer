@@ -47,3 +47,7 @@ export function timeFormat(seconds: number, format: string): string {
         }
     }
 }
+
+export const validTxid = (txid: string) => {
+    return /^[a-zA-Z0-9-_]{43}$/.test(txid)
+}
