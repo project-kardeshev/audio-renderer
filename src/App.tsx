@@ -10,21 +10,12 @@ function App() {
   // TODO: add metadata parsing on file download
   const [audiotx, setAudiotx] = useState('')
 
+  // see renderer spec https://specs.arweave.dev/?tx=rF3z0U1rsUJyJLhKGzigoPZPuxuHn3HRT80SZdGQBd4
   async function updateTxid() {
 
-    let txid = window.location.pathname.split('/')[2] // assumes is not arns name
-    try {
-      // check site header for x-arns-resolved-txid
+    let txid = new URLSearchParams(window.location.search).get('tx')
 
-      const targetId = await fetch(window.location.href).then(res => res.headers.get('x-arns-resolved-id'))
-      if (targetId || window.location.host.startsWith('localhost')) {
-        txid = window.location.pathname.split('/')[1]
-      }
-    } catch (error) {
-      console.error('Error fetching txid from header', error)
-    }
-
-    if (validTxid(txid)) {
+    if (txid && validTxid(txid)) {
       setAudiotx(txid)
     } else {
       console.log('Invalid txid')
