@@ -121,10 +121,10 @@ const AudioPlayer = () => {
                         }}
                         className="audio-rate"
                     >
-                        <option value="0.5">Speed 0.5</option>
-                        <option value="1.0">Speed 1.0</option>
-                        <option value="1.5">Speed 1.5</option>
-                        <option value="2.0">Speed 2.0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1.0">Normal</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2.0">2.0</option>
                     </select>
                     <VolumeSlider onChangeVolume={onChangeVolume} className="volume-slider" />
                 </div>

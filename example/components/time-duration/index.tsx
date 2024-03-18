@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { timeFormat } from "../../utils";
 import "./index.scss";
 
-const initTime = "00:00:00.0";
+const initTime = "00:00:00";
 
 interface TimeDurationProps {
     className?: string;
@@ -16,7 +16,7 @@ const TimeDuration = forwardRef(({ className, duration = 0 }: PropsWithChildren<
 
     useImperativeHandle(ref, () => ({
         changeCurrentTime: (current: number) => {
-            setCurrentTime(() => timeFormat(current, "hh:mm:ss.u"));
+            setCurrentTime(() => timeFormat(current, "hh:mm:ss"));
         },
     }));
 
@@ -24,7 +24,7 @@ const TimeDuration = forwardRef(({ className, duration = 0 }: PropsWithChildren<
         <div className={classNames("audio-time", { [className]: !!className })}>
             <span className="current-time">{currentTime}</span>
             <span className="divider">/</span>
-            <span className="total-time">{timeFormat(duration, "hh:mm:ss.u")}</span>
+            <span className="total-time">{timeFormat(duration, "hh:mm:ss")}</span>
         </div>
     );
 });
