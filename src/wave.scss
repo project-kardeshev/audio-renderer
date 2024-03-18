@@ -1,0 +1,35 @@
+.wave-container {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .channel {
+        position: relative;
+        z-index: 1;
+
+        .progress {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 4;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .wave-canvas {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+.error-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .wave-error-text {
+        color: #ff4d4f;
+    }
+}
