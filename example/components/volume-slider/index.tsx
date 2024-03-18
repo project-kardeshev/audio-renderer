@@ -47,7 +47,7 @@ const VolumeSlider = ({ onChangeVolume, className }: VolumeSliderProps) => {
                     }}
                 />
             )}
-            <input
+            {/*<input
                 type="range"
                 min={0}
                 max={100}
@@ -57,7 +57,7 @@ const VolumeSlider = ({ onChangeVolume, className }: VolumeSliderProps) => {
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     changeSlider(Number(event.target.value));
                 }}
-            />
+            />*/}
         </div>
     );
 };
