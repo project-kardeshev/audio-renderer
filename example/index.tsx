@@ -22,8 +22,8 @@ import "./iconfont/iconfont.scss";
 const waveHeight = 50;
 const colors = {
     waveColor: "#d8d8d8",
-    progressColor: "#8E128E",
-    cursorColor: "#8E128E",
+    progressColor: "#2b8423",
+    cursorColor: "#2b8423",
 };
 
 const downloadAudio = () => {
@@ -113,11 +113,10 @@ const AudioPlayer = () => {
             />
             {loadState === LoadStateEnum.SUCCESS ? (
                 <div className="audio-controls">
-                    {/*
                     <span
                         className={classNames("iconfont icon-circledownload", "icon-download")}
                         onClick={downloadAudio}
-                    />*/}
+                    />
                     <select
                         value={playbackRate}
                         onChange={(event: ChangeEvent<HTMLSelectElement>) => {
