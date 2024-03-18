@@ -1,7 +1,0 @@
-/node_modules
-/scripts/
-/dist/
-postcss.config.js
-server.js
-es/**/*
-lib/**/*

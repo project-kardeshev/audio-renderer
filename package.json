@@ -1,81 +1,33 @@
 {
-    "name": "react-audio-wave",
-    "version": "1.0.0",
-    "description": "visualize a waveform of an audio file",
-    "main": "dist/react-audio-wave.cjs.js",
-    "module": "dist/react-audio-wave.esm.js",
-    "typings": "dist/react-audio-wave.d.ts",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/llaurora/react-audio-wave"
-    },
-    "files": [
-        "LICENSE",
-        "README.md",
-        "dist/"
-    ],
-    "keywords": [
-        "react",
-        "react-component",
-        "wave",
-        "waveform",
-        "audio"
-    ],
-    "scripts": {
-        "start:vite": "vite",
-        "build:types": "tsc",
-        "build:extract-api": "api-extractor run && rimraf dist/typings-temp",
-        "build:rollup": "rollup -c rollup.config.mjs",
-        "build": "rimraf dist && pnpm run build:rollup && pnpm run build:types && pnpm run build:extract-api",
-        "eslint": "eslint \"src/**/*.{ts,tsx,js}\"",
-        "stylelint": "stylelint \"src/**/*.{css,scss,sass}\"",
-        "lint": "pnpm eslint && pnpm stylelint",
-        "eslint:fix": "pnpm eslint --fix",
-        "stylelint:fix": "pnpm stylelint --fix",
-        "lint:fix": "pnpm eslint:fix && pnpm stylelint:fix"
-    },
-    "dependencies": {
-        "@babel/runtime-corejs3": "^7.22.5"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.19.3",
-        "@babel/plugin-transform-runtime": "^7.19.1",
-        "@babel/preset-env": "^7.19.3",
-        "@babel/preset-react": "^7.18.6",
-        "@babel/preset-typescript": "^7.18.6",
-        "@commitlint/cli": "^17.1.2",
-        "@commitlint/config-conventional": "^17.1.0",
-        "@microsoft/api-extractor": "^7.36.0",
-        "@rollup/plugin-babel": "^6.0.3",
-        "@rollup/plugin-commonjs": "^25.0.2",
-        "@rollup/plugin-node-resolve": "^15.1.0",
-        "@rollup/plugin-terser": "^0.4.3",
-        "@types/react": "^18.2.12",
-        "@types/react-dom": "^18.2.5",
-        "@typescript-eslint/eslint-plugin": "^5.39.0",
-        "@typescript-eslint/parser": "^5.39.0",
-        "@vitejs/plugin-react-swc": "^3.3.2",
-        "classnames": "^2.3.2",
-        "cssnano": "^6.0.1",
-        "postcss": "^8.4.17",
-        "postcss-flexbugs-fixes": "^5.0.2",
-        "postcss-loader": "^6.2.1",
-        "postcss-preset-env": "^7.8.2",
-        "postcss-scss": "^4.0.5",
-        "prettier": "^2.7.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "resize-observer-polyfill": "^1.5.1",
-        "rimraf": "^5.0.1",
-        "rollup": "^3.25.1",
-        "rollup-plugin-postcss": "^4.0.2",
-        "sass": "^1.55.0",
-        "typescript": "^4.8.4",
-        "vite": "^4.3.9",
-        "webaudio-peaks": "^1.0.0"
-    },
-    "engines": {
-        "node": ">= 10.13.0"
-    }
+  "name": "renderer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "arweave": "^1.14.4",
+    "classnames": "^2.5.1",
+    "music-metadata-browser": "^2.5.10",
+    "react": "^18.2.0",
+    "react-audio-wave": "^1.0.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.72.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  }
 }
