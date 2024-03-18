@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react'
 import AudioPlayer from './components/AudioPlayer'
 import "./index.scss";
 import "./iconfont/iconfont.scss";
-import Arweave from 'arweave'
+
+const validTxid = (txid: string) => {
+  return /^[a-zA-Z0-9-_]{43}$/.test(txid)
+}
 
 function App() {
 
@@ -16,12 +19,17 @@ function App() {
     port: 443,
     protocol: 'https',
   }
-  const arweave = Arweave.init(config)
 
   useEffect(() => {
-    console.log({ txid, loc: window.location.pathname })
-    setAudiotx(txid)
+    if (validTxid(txid)) {
+      setAudiotx(txid)
+    } else {
+      console.log('Invalid txid')
+    }
   }, [txid])
+
+
+
 
   return (
     <>

@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { LoadStateEnum, ReactAudioWave, LoadStateEnumType, InstanceMethodType } from "react-audio-wave";
 import TimeDuration from "./time-duration";
@@ -7,6 +7,7 @@ import Placeholder from "./placeholder";
 import VolumeSlider from "./volume-slider";
 import { timeFormat as timeFormatFunc } from "../utils";
 import AudioMeta from "./audio-metadata";
+import * as mm from 'music-metadata-browser'
 
 const waveHeight = 50;
 const colors = {
@@ -19,6 +20,11 @@ const downloadAudio = (audioSrc: string) => {
     window.open(audioSrc, "_parent");
 };
 
+const parseMetadata = async (audioSrc: string) => {
+    const metadata = await mm.fetchFromUrl(audioSrc)
+    return metadata
+}
+
 const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
     const [paused, setPaused] = useState<boolean>(true);
     const [playbackRate, setPlaybackRate] = useState<string>("1.0");
@@ -26,6 +32,24 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
     const audioWaveRef = useRef<InstanceMethodType>(null);
     const durationRef = useRef<number>();
     const timeDurationRef = useRef<{ changeCurrentTime: (current: number) => void }>(null);
+    const [metadata, setMetadata] = useState<{ author: string, title: string, year: string, coverUrl: string }>({
+        author: "unknown author",
+        title: "unknown title",
+        year: "unknown year",
+        coverUrl: ""
+    });
+
+    useEffect(() => {
+        parseMetadata(audioSrc).then((metadata) => {
+            console.log(metadata)
+            setMetadata({
+                author: metadata.common.artist ?? "unknown artist",
+                title: metadata.common.title ?? "unknown title",
+                year: metadata.common.year?.toString() ?? "unknown year",
+                coverUrl: URL.createObjectURL(new Blob([metadata.common.picture?.[0].data]))
+            })
+        })
+    }, [audioSrc])
 
 
     const onChangeLoadState = useCallback((state: LoadStateEnumType, duration?: number) => {
@@ -81,7 +105,7 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
                         })}
                     />
                     <div className="audio-meta">
-                        <AudioMeta />
+                        <AudioMeta author={metadata?.author} title={metadata?.title} year={metadata.year} coverUrl={metadata?.coverUrl} />
 
                     </div>
                     {/*
