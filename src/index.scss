@@ -61,3 +61,14 @@
 .placeholder {
     font-family: sans-serif;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .audio-player {
+        flex-direction: column;
+    }
+    .audio-controls-footer {
+        margin: 10px 0;
+    }
+}
+

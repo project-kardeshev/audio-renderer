@@ -36,7 +36,7 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
         author: "unknown author",
         title: "unknown title",
         year: "unknown year",
-        coverUrl: ""
+        coverUrl: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjggMjY4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZmY0ZTA0OwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPgogICAgPGc+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTAsMTM0djEzNGgxMzRDNTkuOTksMjY4LDAsMjA4LjAxLDAsMTM0WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0xMzQsMEgwdjEzNEMwLDU5Ljk5LDU5Ljk5LDAsMTM0LDBaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTEzNCwyNjhoMTM0di0xMzRjMCw3NC4wMS01OS45OSwxMzQtMTM0LDEzNFoiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMTM0LDBjNzQuMDEsMCwxMzQsNTkuOTksMTM0LDEzNFYwaC0xMzRaIi8+CiAgICAgIDxwYXRoIGQ9Im0xMzQsMEM1OS45OSwwLDAsNTkuOTksMCwxMzRzNTkuOTksMTM0LDEzNCwxMzQsMTM0LTU5Ljk5LDEzNC0xMzRTMjA4LjAxLDAsMTM0LDBabTAsMTc0LjVjLTIyLjM3LDAtNDAuNS0xOC4xMy00MC41LTQwLjVzMTguMTMtNDAuNSw0MC41LTQwLjUsNDAuNSwxOC4xMyw0MC41LDQwLjUtMTguMTMsNDAuNS00MC41LDQwLjVaIi8+CiAgICAgIDxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iMTM0IiBjeT0iMTM0IiByPSI0MC41Ii8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4="
     });
 
     useEffect(() => {
@@ -132,7 +132,7 @@ const AudioPlayer = ({ audioSrc }: { audioSrc: string }) => {
                 placeholder={Placeholder}
             />
             {loadState === LoadStateEnum.SUCCESS ? (
-                <div className="audio-controls">
+                <div className="audio-controls audio-controls-footer">
                     <span
                         className={classNames("iconfont icon-circledownload", "icon-download")}
                         onClick={() => downloadAudio(audioSrc)}
